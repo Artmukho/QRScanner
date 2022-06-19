@@ -8,7 +8,15 @@
 import UIKit
 import AVFoundation
 
-class CaptureViewController: UIViewController {
+protocol CaptureViewProtocol {
+    
+}
+
+class CaptureViewController: UIViewController, CaptureViewProtocol {
+    
+    var presenter: CapturePresenterProtocol?
+    private var session = AVCaptureSession()
+    private var capturePreview = AVCaptureVideoPreviewLayer()
     private var borderView: UIView = {
         var view = UIView(frame: .zero)
         view.layer.borderColor = UIColor.systemYellow.cgColor
@@ -16,8 +24,6 @@ class CaptureViewController: UIViewController {
         view.layer.cornerRadius = 6
         return view
     }()
-    private var session = AVCaptureSession()
-    private var capturePreview = AVCaptureVideoPreviewLayer()
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC23B58A285F6FEE00CEAEAB /* WebViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23B589285F6FEE00CEAEAB /* WebViewPresenter.swift */; };
+		DC23B58D285F728200CEAEAB /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC23B58C285F728200CEAEAB /* Assembler.swift */; };
 		DCC16662285EF6B000BA27C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC16661285EF6B000BA27C6 /* AppDelegate.swift */; };
 		DCC16664285EF6B000BA27C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC16663285EF6B000BA27C6 /* SceneDelegate.swift */; };
 		DCC16666285EF6B000BA27C6 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC16665285EF6B000BA27C6 /* CaptureViewController.swift */; };
 		DCC1666B285EF6B500BA27C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC1666A285EF6B500BA27C6 /* Assets.xcassets */; };
 		DCC1666E285EF6B500BA27C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC1666C285EF6B500BA27C6 /* LaunchScreen.storyboard */; };
 		DCC1667E285F54BE00BA27C6 /* CapturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC1667D285F54BE00BA27C6 /* CapturePresenter.swift */; };
+		DCC16684285F571A00BA27C6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC16683285F571A00BA27C6 /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC23B589285F6FEE00CEAEAB /* WebViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenter.swift; sourceTree = "<group>"; };
+		DC23B58C285F728200CEAEAB /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		DCC1665E285EF6B000BA27C6 /* QRScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC16661285EF6B000BA27C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCC16663285EF6B000BA27C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +29,7 @@
 		DCC1666D285EF6B500BA27C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DCC1666F285EF6B500BA27C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCC1667D285F54BE00BA27C6 /* CapturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturePresenter.swift; sourceTree = "<group>"; };
+		DCC16683285F571A00BA27C6 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC23B58B285F721600CEAEAB /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				DC23B58C285F728200CEAEAB /* Assembler.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		DCC16655285EF6AF00BA27C6 = {
 			isa = PBXGroup;
 			children = (
@@ -75,7 +89,9 @@
 		DCC16676285EF6EA00BA27C6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				DC23B58B285F721600CEAEAB /* Assembly */,
 				DCC16677285EF6F800BA27C6 /* App */,
+				DCC16680285F56EB00BA27C6 /* WebViewModule */,
 				DCC16678285EF70100BA27C6 /* CaptureModule */,
 			);
 			path = Source;
@@ -119,6 +135,31 @@
 			isa = PBXGroup;
 			children = (
 				DCC1667D285F54BE00BA27C6 /* CapturePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		DCC16680285F56EB00BA27C6 /* WebViewModule */ = {
+			isa = PBXGroup;
+			children = (
+				DCC16682285F570800BA27C6 /* Presenter */,
+				DCC16681285F570300BA27C6 /* View */,
+			);
+			path = WebViewModule;
+			sourceTree = "<group>";
+		};
+		DCC16681285F570300BA27C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DCC16683285F571A00BA27C6 /* WebViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DCC16682285F570800BA27C6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				DC23B589285F6FEE00CEAEAB /* WebViewPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -195,7 +236,10 @@
 			files = (
 				DCC16666285EF6B000BA27C6 /* CaptureViewController.swift in Sources */,
 				DCC1667E285F54BE00BA27C6 /* CapturePresenter.swift in Sources */,
+				DC23B58D285F728200CEAEAB /* Assembler.swift in Sources */,
 				DCC16662285EF6B000BA27C6 /* AppDelegate.swift in Sources */,
+				DCC16684285F571A00BA27C6 /* WebViewController.swift in Sources */,
+				DC23B58A285F6FEE00CEAEAB /* WebViewPresenter.swift in Sources */,
 				DCC16664285EF6B000BA27C6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
