@@ -7,6 +7,12 @@
 
 import Foundation
 
-class CapturePresenter {
+protocol CapturePresenterProtocol {
+    
+}
+
+class CapturePresenter: CapturePresenterProtocol {
+
+    var view: CaptureViewProtocol?
     
 }
