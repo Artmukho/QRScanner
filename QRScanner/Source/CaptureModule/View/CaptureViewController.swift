@@ -8,11 +8,9 @@
 import UIKit
 import AVFoundation
 
-protocol CaptureViewProtocol {
+class CaptureViewController: UIViewController {
     
-}
-
-class CaptureViewController: UIViewController, CaptureViewProtocol {
+    //MARK: - Properties
     
     var presenter: CapturePresenterProtocol?
     private var session = AVCaptureSession()
@@ -24,6 +22,8 @@ class CaptureViewController: UIViewController, CaptureViewProtocol {
         view.layer.cornerRadius = 6
         return view
     }()
+    
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +38,8 @@ class CaptureViewController: UIViewController, CaptureViewProtocol {
         borderView.frame = .zero
         session.startRunning()
     }
+    
+    //MARK: - Private methods
     
     private func setupHierarchy() {
         view.addSubview(borderView)
@@ -68,6 +70,8 @@ class CaptureViewController: UIViewController, CaptureViewProtocol {
         output.metadataObjectTypes = [.qr]
     }
 }
+
+//MARK: - Delegate methods
 
 extension CaptureViewController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {

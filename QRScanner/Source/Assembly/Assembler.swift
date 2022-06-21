@@ -10,22 +10,15 @@ import UIKit
 class Assembler {
     func createCaptureModule(router: Router) -> UIViewController {
         let view = CaptureViewController()
-        let presenter = CapturePresenter()
-        
+        let presenter = CapturePresenter(view: view, router: router)
         view.presenter = presenter
-        presenter.view = view
-        presenter.router = router
         
         return view
     }
     
     func createWebViewModule(path: String, router: Router) -> UIViewController {
         let view = WebViewController()
-        let presenter = WebViewPresenter()
-        
-        presenter.view = view
-        presenter.path = path
-        presenter.router = router
+        let presenter = WebViewPresenter(path: path, view: view, router: router)
         view.presenter = presenter
         
         return view
