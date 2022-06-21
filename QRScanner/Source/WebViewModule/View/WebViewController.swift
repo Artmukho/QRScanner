@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-protocol WebViewProtocol {
+protocol WebViewProtocol: AnyObject {
     func loadRequest(request: URLRequest)
     func presentShared(path: URL)
 }

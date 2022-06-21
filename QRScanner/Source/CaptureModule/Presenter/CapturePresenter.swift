@@ -12,9 +12,20 @@ protocol CapturePresenterProtocol {
 }
 
 class CapturePresenter: CapturePresenterProtocol {
+    
+    //MARK: - Properties
 
-    var view: CaptureViewProtocol?
+    weak var view: CaptureViewController?
     var router: Router?
+    
+    //MARK: - Initializer
+    
+    init(view: CaptureViewController, router: Router) {
+        self.view = view
+        self.router = router
+    }
+    
+    //MARK: - Methods
     
     func catchCode(_ string: String) {
         router?.showWebView(path: string)

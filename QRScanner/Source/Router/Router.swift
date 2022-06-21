@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol Router {
+protocol Router: AnyObject {
     func initialMainViewController()
     func showWebView(path: String)
     func popToRoot()

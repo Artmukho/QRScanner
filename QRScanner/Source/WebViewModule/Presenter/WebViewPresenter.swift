@@ -7,25 +7,38 @@
 
 import Foundation
 
-protocol WebViewPresenterProtocol {
+protocol WebViewPresenterProtocol: AnyObject {
     func getRequest()
     func showShared()
     func popTo()
 }
 
 class WebViewPresenter: WebViewPresenterProtocol {
-    var view: WebViewProtocol?
+    
+    //MARK: - Properties
+    
+    weak var view: WebViewProtocol?
     var router: Router?
-    var path: String?
+    var path: String
+    
+    //MARK: - Initializer
+    
+    init(path: String, view: WebViewProtocol, router: Router) {
+        self.view = view
+        self.router = router
+        self.path = path
+    }
+    
+    //MARK: - Methods
     
     func getRequest() {
-        guard let url = URL(string: path ?? "") else { return }
+        guard let url = URL(string: path) else { return }
         let request = URLRequest(url: url)
         view?.loadRequest(request: request)
     }
     
     func showShared() {
-        guard let url = URL(string: path ?? "") else { return }
+        guard let url = URL(string: path) else { return }
         view?.presentShared(path: url)
     }
     
