@@ -10,6 +10,7 @@ import WebKit
 
 protocol WebViewProtocol {
     func loadRequest(request: URLRequest)
+    func presentShared(path: URL)
 }
 
 class WebViewController: UIViewController, WebViewProtocol {
@@ -65,20 +66,41 @@ class WebViewController: UIViewController, WebViewProtocol {
         let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
                                           style: .plain,
                                           target: self,
-                                          action: nil)
+                                          action: #selector(shareButtonTap))
         navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = shareButton
         navigationItem.hidesBackButton = true
     }
     
-    @objc func backButtonTap() {
+    @objc private func backButtonTap() {
         presenter?.popTo()
+    }
+    
+    @objc private func shareButtonTap() {
+        presenter?.showShared()
     }
     
     //MARK: - Protocols methods
     
     func loadRequest(request: URLRequest) {
         webView.load(request)
+    }
+    
+    func presentShared(path: URL) {
+        if let pdf = try? Data(contentsOf: path) {
+            let activityController = UIActivityViewController(activityItems: [pdf] as [Any], applicationActivities: nil)
+            activityController.completionWithItemsHandler = { [weak self] activity, comlited, _, error in
+                if let activity = activity, activity.rawValue.contains("SaveToFiles") {
+                    let alert = UIAlertController(title: comlited ? "Файл сохранен" : "Ошибка",
+                                                  message: error?.localizedDescription,
+                                                  preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(action)
+                    self?.present(alert, animated: true)
+                }
+            }
+            present(activityController, animated: true)
+        }
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
