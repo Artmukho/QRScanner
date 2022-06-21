@@ -9,7 +9,7 @@ import Foundation
 
 protocol WebViewPresenterProtocol {
     func getRequest()
-    func showShared(items: [Any])
+    func showShared()
     func popTo()
 }
 
@@ -24,8 +24,9 @@ class WebViewPresenter: WebViewPresenterProtocol {
         view?.loadRequest(request: request)
     }
     
-    func showShared(items: [Any]) {
-        router?.showSharedSheet(items: items)
+    func showShared() {
+        guard let url = URL(string: path ?? "") else { return }
+        view?.presentShared(path: url)
     }
     
     func popTo() {

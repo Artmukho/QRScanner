@@ -30,9 +30,4 @@ class Assembler {
         
         return view
     }
-    
-    func createSharedModule(items: [Any]) -> UIActivityViewController {
-        let view = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        return view
-    }
 }

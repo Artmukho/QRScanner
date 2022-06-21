@@ -10,7 +10,6 @@ import UIKit
 protocol Router {
     func initialMainViewController()
     func showWebView(path: String)
-    func showSharedSheet(items: [Any])
     func popToRoot()
 }
 
@@ -34,13 +33,6 @@ class MainRouter: Router {
         if let navigationController = navigationController {
             guard let viewController = assembly?.createWebViewModule(path: path, router: self) else { return }
             navigationController.pushViewController(viewController, animated: true)
-        }
-    }
-    
-    func showSharedSheet(items: [Any]) {
-        if let navigationController = navigationController {
-            guard let sharedViewController = assembly?.createSharedModule(items: items) else { return }
-            navigationController.present(sharedViewController, animated: true, completion: nil)
         }
     }
         
