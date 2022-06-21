@@ -61,13 +61,18 @@ class WebViewController: UIViewController, WebViewProtocol {
     }
     
     private func setupNavigationBar() {
-        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: nil)
+        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonTap))
         let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
                                           style: .plain,
                                           target: self,
                                           action: nil)
-        navigationItem.backBarButtonItem = backButton
+        navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = shareButton
+        navigationItem.hidesBackButton = true
+    }
+    
+    @objc func backButtonTap() {
+        presenter?.popTo()
     }
     
     //MARK: - Protocols methods

@@ -33,6 +33,12 @@ class CaptureViewController: UIViewController, CaptureViewProtocol {
         setupHierarchy()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        borderView.frame = .zero
+        session.startRunning()
+    }
+    
     private func setupHierarchy() {
         view.addSubview(borderView)
     }
@@ -70,6 +76,8 @@ extension CaptureViewController: AVCaptureMetadataOutputObjectsDelegate {
             if object.type == AVMetadataObject.ObjectType.qr {
                 let qrObject = capturePreview.transformedMetadataObject(for: object)
                 borderView.frame = qrObject?.bounds ?? .zero
+                presenter?.catchCode(object.stringValue ?? "")
+                session.stopRunning()
         }
     }
 }

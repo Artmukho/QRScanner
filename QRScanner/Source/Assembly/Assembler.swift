@@ -8,23 +8,31 @@
 import UIKit
 
 class Assembler {
-    func createCaptureModule() -> UIViewController {
+    func createCaptureModule(router: Router) -> UIViewController {
         let view = CaptureViewController()
         let presenter = CapturePresenter()
         
         view.presenter = presenter
         presenter.view = view
+        presenter.router = router
         
         return view
     }
     
-    func createWebViewModule() -> UIViewController {
+    func createWebViewModule(path: String, router: Router) -> UIViewController {
         let view = WebViewController()
         let presenter = WebViewPresenter()
         
         presenter.view = view
+        presenter.path = path
+        presenter.router = router
         view.presenter = presenter
         
+        return view
+    }
+    
+    func createSharedModule(items: [Any]) -> UIActivityViewController {
+        let view = UIActivityViewController(activityItems: items, applicationActivities: nil)
         return view
     }
 }
