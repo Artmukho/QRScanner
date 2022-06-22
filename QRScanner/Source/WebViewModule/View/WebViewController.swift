@@ -8,20 +8,20 @@
 import UIKit
 import WebKit
 
-protocol WebViewProtocol: AnyObject {
+protocol WebViewInput: AnyObject {
     func loadRequest(request: URLRequest)
     func presentShared(path: URL)
 }
 
-class WebViewController: UIViewController, WebViewProtocol {
+class WebViewController: UIViewController, WebViewInput {
     
-    //MARK: - Properties
+    // MARK: - Properties
     
-    var presenter: WebViewPresenterProtocol?
+    var presenter: WebViewoutput?
     private var progressView = UIProgressView(progressViewStyle: .default)
     private var webView = WKWebView()
     
-    //MARK: -Lifecycle
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class WebViewController: UIViewController, WebViewProtocol {
         setupLayout()
     }
     
-    //MARK: - Private methods
+    // MARK: - Private methods
     
     private func setupHierarchy() {
         view.addSubview(webView)
@@ -73,14 +73,14 @@ class WebViewController: UIViewController, WebViewProtocol {
     }
     
     @objc private func backButtonTap() {
-        presenter?.popTo()
+        presenter?.close()
     }
     
     @objc private func shareButtonTap() {
         presenter?.showShared()
     }
     
-    //MARK: - Protocols methods
+    // MARK: - Protocols methods
     
     func loadRequest(request: URLRequest) {
         webView.load(request)
