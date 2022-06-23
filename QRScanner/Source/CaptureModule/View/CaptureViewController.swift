@@ -10,9 +10,9 @@ import AVFoundation
 
 class CaptureViewController: UIViewController {
     
-    //MARK: - Properties
+    // MARK: - Properties
     
-    var presenter: CapturePresenterProtocol?
+    var presenter: CaptureViewOutput?
     private var session = AVCaptureSession()
     private var capturePreview = AVCaptureVideoPreviewLayer()
     private var borderView: UIView = {
@@ -23,7 +23,7 @@ class CaptureViewController: UIViewController {
         return view
     }()
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class CaptureViewController: UIViewController {
         session.startRunning()
     }
     
-    //MARK: - Private methods
+    // MARK: - Private methods
     
     private func setupHierarchy() {
         view.addSubview(borderView)
@@ -71,7 +71,7 @@ class CaptureViewController: UIViewController {
     }
 }
 
-//MARK: - Delegate methods
+// MARK: - Delegate methods
 
 extension CaptureViewController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {

@@ -7,28 +7,27 @@
 
 import Foundation
 
-protocol CapturePresenterProtocol {
+protocol CaptureViewOutput {
     func catchCode(_ string: String)
 }
 
-class CapturePresenter: CapturePresenterProtocol {
+class CapturePresenter: CaptureViewOutput {
     
-    //MARK: - Properties
+    // MARK: - Properties
 
-    weak var view: CaptureViewController?
-    var router: Router?
+    private weak var view: CaptureViewController?
+    private var router: Router?
     
-    //MARK: - Initializer
+    // MARK: - Initializer
     
     init(view: CaptureViewController, router: Router) {
         self.view = view
         self.router = router
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     
     func catchCode(_ string: String) {
         router?.showWebView(path: string)
     }
-    
 }
